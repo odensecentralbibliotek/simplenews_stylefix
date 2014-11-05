@@ -1,0 +1,3 @@
+name = simplenews_stylefix
+description = Indsætte style fix's i newsletters så det virker i outlook.
+core = 7.x

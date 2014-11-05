@@ -1,0 +1,28 @@
+<?php
+function simplenews_stylefix_mail_alter(&$message)
+{
+    if($message["module"] == "simplenews" && variable_get('oc_mailwrap_enabled',1) == 1)
+    {
+        /*
+         * Wrap mail body in span and let it inherit border: 0px
+         */
+        $NewBody = "<span style='border: 0px;'>" . $message["body"]["body"] . "</span>";
+        $message["body"]["body"] = $NewBody;
+        return;
+    }
+    return;
+}
+/*
+ * Add enable/disable to simplnews default options.
+ */
+function simplenews_stylefix_form_simplenews_admin_settings_newsletter_alter(&$form, &$form_state, $form_id) {
+    
+    $form['simplenews_default_options']['oc_mailwrap_enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Wrap newsletter i border/style fix.'),
+    '#default_value' => variable_get('oc_mailwrap_enabled', 1),
+    '#description' => t('Optimere visningen af nyhedsbrevet på outlook mail clienter.'),
+    );    
+    return;
+}
+
