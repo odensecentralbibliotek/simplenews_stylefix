@@ -6,7 +6,7 @@ function simplenews_stylefix_mail_alter(&$message)
         /*
          * Wrap mail body in span and let it inherit border: 0px
          */
-        $NewBody = "<span style='border: 0px !important;'>" . $message["body"]["body"] . "</span>";
+        $NewBody =  str_replace('border="1"','border="0"',$message["body"]["body"]);
         $message["body"]["body"] = $NewBody;
         return;
     }
